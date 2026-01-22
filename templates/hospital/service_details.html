@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% block maincontent %}
+<!--inner banner-->
+<div class="inner-banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1>{{ object.title }}</h1>
+      </div>
+      <div class="col-md-5">
+        <ol class="breadcrumb">
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li class="active"> {{ object.title }} </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<!--inner banner End-->
+
+<!--Main Content Start-->
+<div class="main-content">
+  <div class="service-details">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="ser-content">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="ser-thumb"> <img src="{{ object.cover.url }}" alt=""> </div>
+                <p>{{ object.description }}</p>
+                <ul>
+                  {% for item in object.items.all %}
+                  <li><i class="fa fa-check"></i>&nbsp;{{ item.title }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% if object.image1 %}
+              <div class="col-md-6">
+                <div class="ser-thumb"> <img src="{{ object.image1.url }}" alt=""> </div>
+              </div>
+              {% endif %}
+              {% if object.image2 %}
+              <div class="col-md-6">
+                <div class="ser-thumb"> <img src="{{ object.image2.url }}" alt=""> </div>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+           
+          <div class="service-doctors mt-5">
+  <h3>Doctors for {{ object.title }}</h3>
+  <div class="row justify-content-center">
+
+    {% for doctor in doctors %}
+    <div class="col-md-4 col-sm-6" style="margin-top:25px">
+      <div class="doctor-card text-center">
+        
+        <!-- Doctor Image with Overlay -->
+        <div class="doctor-img">
+          <img src="{{ doctor.picture.url }}" alt="{{ doctor.name }}">
+          <div class="overlay">
+            <a href="{% url 'team_details' doctor.pk %}">
+              <i class="fa fa-Heart" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Doctor Info -->
+        <div class="doctor-name">{{ doctor.name }}</div>
+        <div class="doctor-title">{{ doctor.speciality }}</div>
+        
+        <!-- Social Links (optional) -->
+        <div class="social-links">
+          {% if doctor.twitter %}
+            <a href="{{ doctor.twitter }}"><i class="fa fa-twitter"></i></a>
+          {% endif %}
+          {% if doctor.facebook %}
+            <a href="{{ doctor.facebook }}"><i class="fa fa-facebook"></i></a>
+          {% endif %}
+          {% if doctor.instagram %}
+            <a href="{{ doctor.instagram }}"><i class="fa fa-instagram"></i></a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p>No doctors assigned for this service.</p>
+    {% endfor %}
+
+  </div>
+</div>
+
+        
+
+        </div>
+        <div class="col-md-4">
+          <div class="services-nav">
+            <h3>Cardio Services</h3>
+            <ul class="side-nav">
+              {% for service in services %}
+              <li {% if service.id is object.id %}class="active" {% endif %}><a
+                  href="{% url 'service_details' service.id %}"><i class="fa fa-angle-right" aria-hidden="true"></i>
+                  {{ service.title }} </a>
+                {% endfor %}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Main Content End-->
+{% endblock maincontent %}

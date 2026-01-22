@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block maincontent %}
+
+<!--inner banner... unchanged... -->
+
+<!--Main Content Start-->
+<div class="main-content">
+  <section class="faqs">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            {# use 'faqs' because your view sets context_object_name='faqs' #}
+            {% for faq in faqs %}
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="heading{{ forloop.counter }}">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse"
+                     data-parent="#accordion" href="#collapse{{ forloop.counter }}"
+                     aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
+                    {{ faq.question }}
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse{{ forloop.counter }}" class="panel-collapse collapse" role="tabpanel"
+                   aria-labelledby="heading{{ forloop.counter }}">
+                <div class="panel-body">{{ faq.answer }}</div>
+              </div>
+            </div>
+            {% empty %}
+              <p>No results found{% if query %} for "<strong>{{ query }}</strong>"{% endif %}.</p>
+            {% endfor %}
+          </div>
+        </div>
+
+        <aside class="col-md-3">
+          <div class="sidebar">
+            <div class="widget search-widget">
+              <h3>Search</h3>
+
+              {# submit to the url name you registered: 'faqs' #}
+              <form class="search-form" method="get" action="{% url 'faqs' %}">
+                <input
+                  type="search"
+                  name="q"
+                  placeholder="Enter Key words"
+                  value="{{ query|default:'' }}"
+                >
+                <button type="submit">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </form>
+
+            </div>
+
+            {# other widgets unchanged #}
+            <div class="widget text-widget">
+              <h3>Text Widget</h3>
+              <p>We strive to deliver the best service ...</p>
+            </div>
+            <div class="widget newsletter-widget">
+              <h3>Newsletter</h3>
+              <form class="newsletter-form">
+                <input placeholder="Enter your Email" type="email">
+                <button type="submit">Subscribe Now <i class="fa fa-envelope" aria-hidden="true"></i></button>
+              </form>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+</div>
+<!--Main Content End-->
+{% endblock maincontent %}

@@ -1,0 +1,360 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block maincontent %}
+<!--Main Content Start-->
+<div class="main-content">
+  <!--Welcome Section-->
+  <section class="welcome-section">
+    <div class="container">
+      <div class="row">
+        <div class="welcome-box">
+          <div class="col-md-6 col-sm-6">
+            <div class="welcome-text">
+              <div class="sectio-title-2"> <strong>Welcome to your</strong>
+                <h2>Heart Care</h2>
+              </div>
+              <p> The Heart Care Heart Hospital have latest technology machines with experty Heart specialist
+                doctors. At Heart Care Hospital, we pride ourselves on using cutting-edge cardiac technology and offering world-class treatment from our highly experienced heart specialists. From early diagnosis to advanced surgical procedures, our team is dedicated to delivering compassionate and personalized care that meets the highest standards.</p>
+              <p>Our facility is equipped with the latest innovations in cardiac monitoring, minimally invasive surgery, and post-operative recovery systems to ensure your heart health is always in expert hands. Whether it's emergency care, chronic condition management, or routine check-ups, we’re here to support every heartbeat.</p>
+              <strong class="signature">Adam Johns</strong>
+              <h6 class="designation">MS Heart Care Hospital</h6>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="welcome-img"> <img src="{% static 'heartcare/images/welcome.jpg' %}" alt=""> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--Welcome Section End-->
+
+  <!--Home Services Start-->
+  <section class="home-features">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-4">
+          <div class="features-box">
+            <h3>Cardio Monitoring</h3>
+            <p>Our advanced cardiac monitoring systems continuously track your heart activity in real-time, ensuring rapid response during any irregularities or emergencies.</p>
+            <a href="{% url 'appointment' %}">Get Free Appointment</a>
+
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="features-box selected">
+            <h3>First Aid</h3>
+            <p>We offer immediate first aid services with trained professionals available 24/7 to handle trauma, burns, cuts, allergic reactions, and other urgent conditions.</p>
+            <a href="{% url 'contact' %}">Contact Us</a>
+
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="features-box">
+            <h3>Emergency Help</h3>
+            <p><span>Monday-Friday:</span> Full Day<br>
+              <span>Satuday:</span> Full Day<br>
+              <span>Sunday:</span> 7:00am - 05:00pm<br>
+            </p>
+            <a href="#">Callfor Info: +8801719058105</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--Home Services End-->
+
+  <!--Services Section Start-->
+  <section class="home-services">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-title-3"> <strong>Our Departments</strong>
+            <h2>Departmental Services</h2>
+          </div>
+        </div>
+
+        <!--service style 1-->
+        <div class="col-md-12">
+          <div class="service-style-1">
+            <div class="row">
+              <!--service box start-->
+              {% for service in services %}
+              <div class="col-md-3 col-sm-3">
+                <div class="service-box">
+                  <div class="ser-thumb"> <a href="{% url 'service_details' service.id %}" class="view"><i
+                        class="fa fa-heartbeat" aria-hidden="true"></i></a> <img src="{{ service.thumbnail.url }}"
+                      alt="">
+                  </div>
+                  <div class="ser-content">
+                    <h3><a href="{% url 'service_details' service.id %}">{{ service.title }}</a></h3>
+                    <p>{{ service.description|truncatewords:15 }}</p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+              <!--service box End-->
+            </div>
+          </div>
+        </div>
+        <!--service style 1 End-->
+
+      </div>
+    </div>
+  </section>
+  <!--Services Section End-->
+
+  <!--Heart Care Start-->
+  <section class="heart-care-services">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-title-3 white"> <strong>Our Core</strong>
+            <h2>Expert Services</h2>
+          </div>
+        </div>
+        <div class="col-md-5 col-sm-5">
+
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#service-1" aria-controls="service-1" role="tab"
+                data-toggle="tab"> <i class="fa fa-graduation-cap"></i> Experienced Surgeons</a></li>
+            <li role="presentation"><a href="#service-2" aria-controls="service-2" role="tab" data-toggle="tab"> <i
+                  class="fa fa-heartbeat"></i> Special Treatments</a></li>
+            <li role="presentation"><a href="#service-3" aria-controls="service-3" role="tab" data-toggle="tab"> <i
+                  class="fa fa-cloud"></i> Comfort Environment</a></li>
+            <li role="presentation"><a href="#service-4" aria-controls="service-4" role="tab" data-toggle="tab"> <i
+                  class="fa fa-user-md"></i> Talented Cardiologist</a></li>
+            <li role="presentation"><a href="#service-5" aria-controls="service-5" role="tab" data-toggle="tab"> <i
+                  class="fa fa-medkit"></i> High Tech Equipments</a></li>
+            <li role="presentation"><a href="#service-6" aria-controls="service-6" role="tab" data-toggle="tab"> <i
+                  class="fa fa-umbrella"></i> Personalized Care</a></li>
+          </ul>
+        </div>
+        <div class="col-md-7 col-sm-7">
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="service-1">
+              <div class="ser-tab-text">
+                <h3>Experienced Surgeons</h3>
+                <p> <i class="fa fa-graduation-cap"></i> At Heart Care Hospital, our surgical team is led by board-certified, highly experienced heart surgeons with decades of clinical expertise. Our specialists are trained in top medical institutions and have performed thousands of successful cardiac procedures, including bypass surgeries,and minimally heart operations. </p>
+                <ul>
+                  <li><i class="fa fa-check"></i> 🎓 Trained in top national and international medical institutions</li>
+                  <li><i class="fa fa-check"></i> 💉 Thousands of successful surgeries with high patient recovery rates.</li>
+                  <li><i class="fa fa-check"></i> ❤️ Personalized treatment plans with a focus on compassionate care</li>
+                </ul>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="service-2">
+              <div class="ser-tab-text">
+                <h3>Special Treatments</h3>
+                <p> <i class="fa fa-heartbeat"></i> At Heart Care Hospital, we go beyond standard procedures to offer a range of advanced and personalized cardiac treatments tailored to complex and rare heart conditions.Small incision procedures with faster recovery and less pain, including valve and bypass surgeries </p>
+                <ul>
+                  <li><i class="fa fa-check"></i> Customized treatment plans based on genetics, lifestyle, and advanced cardiac screening.</li>
+                  <li><i class="fa fa-check"></i> A combination of surgical and interventional techniques for high-risk patients.</li>
+                  <li><i class="fa fa-check"></i> For treating irregular heart rhythms (arrhythmias) using catheter ablation and 3D mapping.</li>
+                </ul>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="service-3">
+              <div class="ser-tab-text">
+                <h3>Comfort Environment</h3>
+                <p> <i class="fa fa-cloud"></i> At Heart Care Hospital, we believe that healing begins with comfort. That’s why we've created a peaceful, patient-friendly environment designed to reduce stress and support faster recovery.We strive to offer a home-like atmosphere while maintaining the highest standards of medical care. </p>
+                <ul>
+                  <li><i class="fa fa-check"></i> Spacious, clean, and well-ventilated patient rooms.</li>
+                  <li><i class="fa fa-check"></i> Comfortable waiting lounges for families and caregivers.</li>
+                  <li><i class="fa fa-check"></i> Nutritious meals curated by hospital dieticians.</li>
+                </ul>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="service-4">
+              <div class="ser-tab-text">
+                <h3>Talented Cardiologist</h3>
+                <p> <i class="fa fa-user-md"></i> Our team of expert cardiologists brings years of experience and a passion for patient care. We specialize in diagnosing and treating heart conditions with precision and compassion. Your heart health is our top priority, and we are committed to delivering advanced cardiac care.</p>
+                <ul>
+                  <li><i class="fa fa-check"></i> Expert diagnosis and treatment of complex heart diseases.</li>
+                  <li><i class="fa fa-check"></i> Personalized cardiac care tailored to individual needs.</li>
+                  <li><i class="fa fa-check"></i> Advanced technologies for accurate and timely results.</li>
+                </ul>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="service-5">
+              <div class="ser-tab-text">
+                <h3>High Tech Equipments</h3>
+                <p> <i class="fa fa-medkit"></i> Our hospital is equipped with the latest medical technologies to ensure precise diagnosis and effective treatment. From advanced imaging systems to state-of-the-art surgical tools, we prioritize innovation to enhance patient outcomes and safety.</p>
+                <ul>
+                  <li><i class="fa fa-check"></i> Cutting-edge diagnostic and monitoring systems.</li>
+                  <li><i class="fa fa-check"></i> Modern operation theaters with robotic-assisted tools.</li>
+                  <li><i class="fa fa-check"></i> High-performance imaging and scanning equipment.</li>
+                </ul>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="service-6">
+              <div class="ser-tab-text">
+                <h3>Personalized Care</h3>
+                <p> <i class="fa fa-umbrella"></i> We understand that every patient is unique. Our personalized care approach focuses on tailoring treatments and services to meet individual health needs, preferences, and lifestyles. We strive to create a comforting and supportive environment for each patient throughout their journey. </p>
+                <ul>
+                  <li><i class="fa fa-check"></i> Customized treatment plans for every patient.</li>
+                  <li><i class="fa fa-check"></i>Compassionate staff offering emotional and medical support.</li>
+                  <li><i class="fa fa-check"></i> Continuous monitoring and follow-up for long-term wellness.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--Heart Care End-->
+
+
+  <!--Team Start-->
+  <section class="team">
+    <div class="container">
+      <div class="row">
+        <div class="section-title-3"> <strong>Our Team</strong>
+          <h2>Expert Team</h2>
+        </div>
+      </div>
+      <div class="row">
+        {% for doctor in experts|slice:':4' %}
+        <div class="col-md-3 col-sm-6">
+          <div class="team-box mb50">
+            <div class="team-thumb"> <a href="{% url 'doctor_details' doctor.id %}" class="view"><i class="fa fa-Heart"
+                  aria-hidden="true"></i></a> <img src="{{ doctor.picture.url }}" alt=""></div>
+            <div class="team-text">
+              <h5><a href="{% url 'doctor_details' doctor.id %}">{{ doctor.name }}</a></h5>
+              <strong>{{ doctor.speciality }}</strong>
+              <ul class="team-social">
+                {% if doctor.twitter %}
+                <li><a class="tw" href="{{ doctor.twitter }}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                {% endif %}
+                {% if doctor.facebook %}
+                <li><a class="fb" href="{{ doctor.facebook }}"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                </li>
+                {% endif %}
+                {% if doctor.instagram %}
+                <li><a class="insta" href="{{ doctor.instagram }}"><i class="fa fa-instagram"
+                      aria-hidden="true"></i></a></li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <!--Team End-->
+
+
+  <!--Testimonials + Faqs Start-->
+  <section class="testi-faq">
+    <div class="container">
+      <div class="row">
+
+        <!--Testimonials Start-->
+        <div class="col-md-6">
+          <div class="home-testimonials">
+            <div class="sectio-title-2"> <strong>Read What Says Our</strong>
+              <h2>Happy Patients</h2>
+            </div>
+            <div id="testimonial-slider" class="owl-carousel owl-theme">
+
+              <!--Slider Start-->
+              <div class="item">
+                <div class="testimonial-holder">
+                  <div class="user-thumb"> <img src="{% static 'heartcare/images/tuser.jpg' %}" alt=""> <strong>Anna
+                      Anderson</strong>
+                    <i>A heart patient</i> </div>
+                  <div class="test-text">
+                    <p>An excellent hospital with compassionate and skilled cardiologists. The care I received was beyond my expectations. The staff was attentive, and the treatment process was smooth and reassuring. I’m truly grateful for the care and support during my recovery.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimonial-holder">
+                  <div class="user-thumb"> <img src="{% static 'heartcare/images/tuser-2.jpg' %}" alt=""> <strong>Anna
+                      Anderson</strong>
+                    <i>A heart patient</i> </div>
+                  <div class="test-text">
+                    <p>From the moment I walked in, I felt cared for. The doctors explained everything with clarity, and the surgical team was incredibly skilled. Thanks to them, I’m living a healthier life again.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimonial-holder">
+                  <div class="user-thumb"> <img src="{% static 'heartcare/images/tuser.jpg' %}" alt=""> <strong>Anna
+                      Anderson</strong>
+                    <i>A heart patient</i> </div>
+                  <div class="test-text">
+                    <p>What sets this hospital apart is how personally they treat you. Every visit felt like I was among people who truly wanted me to heal. Their follow-up care made a real difference.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!--Slider End-->
+
+            </div>
+          </div>
+        </div>
+        <!--Testimonials End-->
+
+        <!--FAQ Start-->
+        <div class="col-md-6">
+          <div class="home-faq">
+            <div class="sectio-title-2"> <strong>Feel Free For</strong>
+              <h2>Any FAQ’s</h2>
+            </div>
+            <div class="faqs">
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion"
+                        href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> How much you charge
+                        for consultancy </a> </h4>
+                  </div>
+                  <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body"> Our consultancy charges start at ₹500, depending on the specialist and nature of the consultation. The exact fee may vary based on the type of service, whether it's an initial visit, follow-up, or specialized evaluation. Please contact our reception desk or visit our website for detailed pricing and appointment booking. </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse"
+                        data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        What kind of patients do you treat? </a> </h4>
+                  </div>
+                  <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body"> We treat a wide range of patients with various heart-related conditions, including those with high blood pressure, coronary artery disease, heart rhythm disorders, congenital heart defects, and those recovering from heart surgery. Whether it's preventive care, diagnosis, or advanced cardiac treatment, we offer comprehensive services for patients of all age groups. </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse"
+                        data-parent="#accordion" href="#collapseThree" aria-expanded="false"
+                        aria-controls="collapseThree"> Where does my refering Cardiologist go? </a> </h4>
+                  </div>
+                  <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
+                    aria-labelledby="headingThree">
+                    <div class="panel-body"> Your referring cardiologist remains an important part of your care team. We collaborate closely with referring doctors to ensure a smooth transition and continuity of care. After your evaluation or treatment with us, we share detailed reports and updates with your cardiologist so that your long-term care remains coordinated and consistent. </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--FAQ End-->
+
+      </div>
+    </div>
+  </section>
+  <!--Testimonials + Faqs End-->
+
+</div>
+<!--Main Content End-->
+{% endblock maincontent %}

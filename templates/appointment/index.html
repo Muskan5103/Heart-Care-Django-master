@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block maincontent %}
+<!--inner banner-->
+{% if messages %}
+<div class="alert alert-success text-center" id="alert-msg">
+  {% for message in messages %}
+  <h3>{{ message }}</h3>
+  {% endfor %}
+</div>
+{% endif %}
+
+<div class="inner-banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1>Get Appointment</h1>
+      </div>
+      <div class="col-md-5">
+        <ol class="breadcrumb">
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li class="active">Appointment</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<!--inner banner End-->
+
+<!--Main Content Start-->
+<div class="main-content padding-0">
+  <section class="appointment-form">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6"><img src="{% static 'heartcare/images/form-pic.jpg' %}" alt=""></div>
+        <div class="col-md-6">
+          <form action="{% url 'appointment' %}" method="post">
+            {% csrf_token %}
+            <div class="app-form">
+              <div class="row">
+              <div class="col-md-6 col-sm-6">
+                <input class="form-control" placeholder="Full Name *" type="text" name="name">
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <!-- <input class="form-control" placeholder="Your Phone *" type="text" name="phone"> -->
+                 <input class="form-control" placeholder="Your Phone *" type="tel" name="phone" maxlength="10" pattern="[0-9]{10}" required>
+              </div>
+              </div>
+              <div class="row">
+              <div class="col-md-6 col-sm-6">
+                <!-- <input class="form-control" placeholder="Your Email *" type="text" name="email"> -->
+                 <input class="form-control" placeholder="Your Email *" type="email" name="email" required>
+
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <select name="doctor" required>
+  <option disabled {% if not selected_doctor_id %}selected{% endif %}>--Doctor--</option>
+  {% for doctor in doctors %}
+    <option value="{{ doctor.id }}" {% if doctor.id == selected_doctor_id %}selected{% endif %}>
+      {{ doctor.name }}
+    </option>
+  {% endfor %}
+</select>
+              </div>
+              </div>
+              <div class="row">
+              <div class="col-md-6 col-sm-6">
+                <div class="input-group date">
+                  <input placeholder="Date *" name="date" class="form-control" type="date">
+                  <span class="input-group-addon"> <i class="fa fa-calendar" aria-hidden="true"></i> </span>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <select name="time">
+                  <option disabled selected>--Time--</option>
+                  {% for slot in time_slots %}
+                  <option value="{{ slot }}">{{ slot }}</option>
+                  {% endfor %}
+                </select>
+
+              </div>
+              </div>
+              <div class="row">
+              <div class="col-md-12 text-center">
+                <textarea placeholder="Extra Note" name="note"></textarea>
+                <input value="Book Appointment" type="submit">
+              </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!--Main Content End-->
+{% endblock maincontent %}
